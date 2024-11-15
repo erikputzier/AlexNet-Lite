@@ -8,7 +8,7 @@ class AlexNet(tf.keras.Model):
         self.conv1 = layers.Conv2D(96, kernel_size = 11, strides = 4, padding = "same", activation = "relu")
         self.pool1 = layers.MaxPooling2D(pool_size = 3, strides = 2)
 
-        self.conv2 = layers.Conv2D(256, kernelsize = 5, strides = 1, padding = "same", acitvation = "relu")
+        self.conv2 = layers.Conv2D(256, kernel_size = 5, strides = 1, padding = "same", acitvation = "relu")
         self.pool2 = layers.MaxPooling2D(pool_size = 3, strides = 2)
 
         self.conv3 = layers.Conv2D(384, kernel_size = 3, strides = 1, padding = "same", activation = "relu")
