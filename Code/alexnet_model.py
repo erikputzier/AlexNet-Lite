@@ -1,6 +1,14 @@
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
+def data_augmentation():
+    tf.keras.Sequential([
+        layers.RandomFlip("horizontal"),
+        layers.RandomRotation(0.1),
+        layers.RandomZoom(0.1),
+        layers.RandomContrast(0.1),
+    ])
+
 class AlexNet(tf.keras.Model):
     def __init__(self, num_classes = 50):
         super(AlexNet, self).__init__()
@@ -28,7 +36,10 @@ class AlexNet(tf.keras.Model):
         self.dropout2 = layers.Dropout(0.5)
         self.fc3 = layers.Dense(num_classes, activation = "softmax")
     
-    def call(self, x):
+    def call(self, x, training = False):
+        if training:
+            x = data_augmentation(x)
+
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.pool1(x)
