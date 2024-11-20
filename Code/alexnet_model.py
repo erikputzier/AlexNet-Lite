@@ -6,32 +6,32 @@ class AlexNet(tf.keras.Model):
     def __init__(self, num_classes = 50):
         super(AlexNet, self).__init__()
 
-        self.conv1 = layers.Conv2D(48, kernel_size = 7, strides = 4, padding = "same", kernel_regularizer = l2(0.0005))
+        self.conv1 = layers.Conv2D(32, kernel_size = 7, strides = 4, padding = "same", kernel_regularizer = l2(0.0005))
         self.bn1 = layers.BatchNormalization()
         self.dropout_conv1 = layers.Dropout(0.3)
         self.pool1 = layers.MaxPooling2D(pool_size = 3, strides = 2)
 
-        self.conv2 = layers.Conv2D(128, kernel_size = 5, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
+        self.conv2 = layers.Conv2D(64, kernel_size = 5, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
         self.bn2 = layers.BatchNormalization()
         self.dropout_conv2 = layers.Dropout(0.3)
         self.pool2 = layers.MaxPooling2D(pool_size = 3, strides = 2)
 
-        self.conv3 = layers.Conv2D(192, kernel_size = 3, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
+        self.conv3 = layers.Conv2D(96, kernel_size = 3, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
         self.bn3 = layers.BatchNormalization()
         self.dropout_conv3 = layers.Dropout(0.4)
-        self.conv4 = layers.Conv2D(192, kernel_size = 3, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
+        self.conv4 = layers.Conv2D(96, kernel_size = 3, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
         self.bn4 = layers.BatchNormalization()
         self.dropout_conv4 = layers.Dropout(0.4)
-        self.conv5 = layers.Conv2D(128, kernel_size = 3, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
+        self.conv5 = layers.Conv2D(64, kernel_size = 3, strides = 1, padding = "same", kernel_regularizer = l2(0.0005))
         self.bn5 = layers.BatchNormalization()
         self.dropout_conv5 = layers.Dropout(0.4)
         self.pool5 = layers.MaxPooling2D(pool_size = 3, strides = 2)
 
         self.flatten = layers.Flatten()
-        self.fc1 = layers.Dense(1024, activation = "relu", kernel_regularizer = l2(0.0005))
-        self.dropout1 = layers.Dropout(0.5)
-        self.fc2 = layers.Dense(512, activation = "relu", kernel_regularizer = l2(0.0005))
-        self.dropout2 = layers.Dropout(0.5)
+        self.fc1 = layers.Dense(512, activation = "relu", kernel_regularizer = l2(0.0005))
+        self.dropout1 = layers.Dropout(0.6)
+        self.fc2 = layers.Dense(256, activation = "relu", kernel_regularizer = l2(0.0005))
+        self.dropout2 = layers.Dropout(0.6)
         self.fc3 = layers.Dense(num_classes, activation = "softmax")
     
     def call(self, x):
