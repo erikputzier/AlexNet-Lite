@@ -30,8 +30,6 @@ class AlexNet(tf.keras.Model):
         self.flatten = layers.Flatten()
         self.fc1 = layers.Dense(512, activation = "relu", kernel_regularizer = l2(0.0005))
         self.dropout1 = layers.Dropout(0.6)
-        self.fc2 = layers.Dense(256, activation = "relu", kernel_regularizer = l2(0.0005))
-        self.dropout2 = layers.Dropout(0.6)
         self.fc3 = layers.Dense(num_classes, activation = "softmax")
     
     def call(self, x):
@@ -64,8 +62,6 @@ class AlexNet(tf.keras.Model):
         x = self.flatten(x)
         x = self.fc1(x)
         x = self.dropout1(x)
-        x = self.fc2(x)
-        x = self.dropout2(x)
         x = self.fc3(x)
 
         return x
