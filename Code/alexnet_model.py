@@ -28,7 +28,7 @@ class AlexNet(tf.keras.Model):
         self.pool5 = layers.MaxPooling2D(pool_size = 3, strides = 2)
 
         self.flatten = layers.Flatten()
-        self.fc1 = layers.Dense(512, activation = "relu", kernel_regularizer = l2(0.0005))
+        self.fc1 = layers.Dense(256, activation = "relu")
         self.dropout1 = layers.Dropout(0.6)
         self.fc3 = layers.Dense(num_classes, activation = "softmax")
     
